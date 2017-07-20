@@ -42,31 +42,6 @@ body {
     }
 }
 
-#recommendation {
-    padding-left: 0;
-}
-
-#page-recommendation {
-    width: 100%;
-    padding: 0;
-    background-color: #fff;
-}
-
-.huge {
-    font-size: 50px;
-    line-height: normal;
-}
-
-@media(min-width:768px) {
-    #recommendation {
-        padding-left: 225px;
-    }
-
-    #page-recommendation {
-        padding: 10px;
-    }
-}
-
 /* Top Navigation */
 
 .top-nav {

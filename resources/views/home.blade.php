@@ -32,16 +32,17 @@
                     </div> 
                     <div class="modal-body">
                         <div class="w3ls-about-info">
-                            <form role="form">
+                            <form role="form" method="POST" action="{{ url('addReview') }}">
+                            {{ csrf_field() }}
 
-                            <div class="form-group" required>
+                            <div class="form-group">
                                 <label>Product Name</label>
-                                <input class="form-control">
+                                <input class="form-control" name="product_name" required>
                             </div>
 
-                            <div class="form-group" required>
+                            <div class="form-group">
                                 <label>Category</label>
-                                <select class="form-control">
+                                <select class="form-control" name="category" required>
                                     <option>Smart Phone</option>
                                     <option>Camera</option>
                                     <option>Wrist Watch</option>
@@ -52,22 +53,22 @@
                                 </select>
                             </div>
 
-                            <div class="form-group" required>
+                            <div class="form-group">
                                 <label>Price</label>
-                                <input class="form-control" type="number">
+                                <input class="form-control" type="number" name="price" required>
                             </div>
 
-                            <div class="form-group" required>
+                            <div class="form-group">
                                 <label>Review</label>
-                                <textarea class="form-control" rows="3"></textarea>
+                                <textarea class="form-control" rows="3" name="review" required></textarea>
                             </div>
 
-                            <div class="form-group" required>
+                            <div class="form-group">
                                 <label>Upload Photo</label>
-                                <input type="file">
+                                <input type="file" name="photo" required>
                             </div>
 
-                            <button type="submit" class="btn btn-success">Submit Button</button>
+                            <button type="submit" class="btn btn-success">Post</button>
 
                             </form>
                             

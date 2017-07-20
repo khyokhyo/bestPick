@@ -17,12 +17,13 @@ class CreateReviewsTable extends Migration
         {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->string('product_name');
             $table->string('category');
             $table->integer('price')->unsigned();
-            $table->integer('rating')->unsigned();
+            $table->integer('rating')->nullable();
             $table->string('review');
-            $table->integer('upvote')->unsigned();
-            $table->integer('downvote')->unsigned();
+            $table->integer('upvote')->unsigned()->default(0);
+            $table->integer('downvote')->unsigned()->default(0);
             $table->string('photo');
 
             $table->timestamps();
