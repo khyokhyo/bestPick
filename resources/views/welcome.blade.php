@@ -8,11 +8,13 @@
         <ol class="breadcrumb">
             <li class="active">
             	<form role="form">
-            	<div class="form-group">
-                    <input class="form-control" placeholder="Search by name">
-                </div>
-                <button type="submit"><i class="fa fa-search"></i></button>
-            	</form>
+
+                    <div class="form-group input-group">
+                        <input type="text" class="form-control" placeholder="Search a review by product name">
+                        <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
+                    </div>
+
+                </form>
             </li>
         </ol>
 
