@@ -34,7 +34,28 @@ class HomeController extends Controller
         return view('home')->with('reviews', $reviews);
     }
 
-    public function postAddReview()
+    public function getSearch()
+    {
+        $input = Input::all();
+        $search = $input['search'];
+
+        $rules = array(
+            'search' => 'required'
+            );
+        
+        $v = Validator::make($input, $rules);
+
+        if($v->passes())
+        {
+            $reviews = Review::where('product_name', 'LIKE', '%'. $search .'%')->get();
+            return view('home')->with('reviews', $reviews);
+        } else {
+
+            return redirect()->back()->withInput()->withErrors($v);
+        }
+    }
+
+    public function postAddReview(Request $request)
     {
         
         $input = Input::all();
@@ -61,6 +82,8 @@ class HomeController extends Controller
             $review->review = $input['review'];
             $review->photo = $input['photo'];
 
+
+
             if($review->save())
                 return redirect()->back();
             else
@@ -69,7 +92,26 @@ class HomeController extends Controller
             /**
              * ekhan theke kaj kore na
              */
-            $photo = $input['photo'];
+
+
+            $file = $request->file('photo');
+
+            if(!empty($file))
+            {
+                $destinationPath = 'photos';
+                $filename =Auth::user()->name.rand(11111,99999).$file;
+                $request->file('photo')->move($destinationPath, $filename);
+                return 0;
+                
+                $attachment = new Attachment();
+                $attachment->notice_id = $notice->id;
+                $attachment->name = $filename;
+                $attachment->link = $destinationPath.'/'.$filename;
+                $attachment->save();
+            }
+
+            else
+                return 1;
 
             if(!empty($photo))
             {
@@ -96,5 +138,27 @@ class HomeController extends Controller
 
             return redirect()->back()->withInput()->withErrors($v);
         }
+    }
+
+    public function upvote($id)
+    {
+        $review = Review::where('id', $id)->first();
+        $upvote = $review->upvote;
+        $upvote++;
+        $review = Review::where('id', $id)->update(array(
+                'upvote' => $upvote
+            ));
+        return redirect()->back();
+    }
+
+    public function downvote($id)
+    {
+        $review = Review::where('id', $id)->first();
+        $downvote = $review->downvote;
+        $downvote++;
+        $review = Review::where('id', $id)->update(array(
+                'downvote' => $downvote
+            ));
+        return redirect()->back();
     }
 }

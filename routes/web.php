@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'UnauthController@index');
+Route::get('/getSearchPublic', 'UnauthController@getSearchPublic');
 
 Auth::routes();
 
@@ -22,4 +21,7 @@ Route::get('/home', 'HomeController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/getSearch', 'HomeController@getSearch');
 Route::post('/addReview', 'HomeController@postAddReview');
+Route::get('upvote/{id}', array('uses' => 'HomeController@upvote', 'as' => 'upvote'));
+Route::get('downvote/{id}', array('uses' => 'HomeController@downvote', 'as' => 'downvote'));
