@@ -62,18 +62,58 @@ class NavController extends Controller
     		return view('filter')->with('reviews', $reviews);
     }
 
+    public function getFilterCamera()
+    {
+    	$input = Input::all();
+    	$range = $input['range'];
+
+        $rules = array(
+            'range' => 'required'
+            );
+        
+        $v = Validator::make($input, $rules);
+
+        if($v->passes())
+        {
+        	if($range == 1){
+	        	$reviews = Review::where('category', 'Camera')->where('price', '<', 1001)->where('price', '>', 99)->get();
+	        	return view('filterCamera')->with('reviews', $reviews);
+        	}
+        	else if($range == 2){
+	        	$reviews = Review::where('category', 'Camera')->where('price', '<', 5001)->where('price', '>', 999)->get();
+	        	return view('filterCamera')->with('reviews', $reviews);
+        	}
+        	else if($range == 3){
+	        	$reviews = Review::where('category', 'Camera')->where('price', '<', 10001)->where('price', '>', 4999)->get();
+	        	return view('filterCamera')->with('reviews', $reviews);
+        	}
+        	else if($range == 4){
+	        	$reviews = Review::where('category', 'Camera')->where('price', '<', 49999)->where('price', '>', 9999)->get();
+	        	return view('filterCamera')->with('reviews', $reviews);
+        	}
+        	else if($range == 5){
+	        	$reviews = Review::where('category', 'Camera')->where('price', '>', 49999)->get();
+	        	return view('filterCamera')->with('reviews', $reviews);
+        	}
+        }
+        else
+    		return redirect()->back();;
+
+
+    }
+
     public function camera()
     {
         $reviews = Review::where('category', 'Camera')->get();
         if (Auth::guest())
-        	return view('welcome')->with('reviews', $reviews);
+        	return view('filterCamera')->with('reviews', $reviews);
     	else
-        	return view('home')->with('reviews', $reviews);
+        	return view('filterCamera')->with('reviews', $reviews);
     }
 
     public function watch()
     {
-        $reviews = Review::where('category', 'Watch')->get();
+        $reviews = Review::where('category', 'Wrist Watch')->get();
         if (Auth::guest())
         	return view('welcome')->with('reviews', $reviews);
     	else

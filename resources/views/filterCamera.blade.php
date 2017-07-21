@@ -25,7 +25,7 @@
 
         </ol>
 
-        <form role="form" method="GET" action="{{ url('getFilterPhone') }}">
+        <form role="form" method="GET" action="{{ url('getFilterCamera') }}">
 
             <div class="form-group input-group">
                 <select class="form-control" name="range" required>

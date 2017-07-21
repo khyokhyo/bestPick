@@ -135,73 +135,59 @@
                                 </ol>
 
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="panel panel-green">
-                                            <div class="panel-heading">
-                                                <div class="row">
-                                                    <div class="col-xs-3">
-                                                        <i class="fa fa-tasks fa-5x"></i>
+                                <?php $i = 10;?> 
+                                @foreach($reviews as $review)
+                                        <div class="col-md-6">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <img class="img" src="./images/p.jpg"  style="height:85px;" alt="">
+                                                </div>
+                                                <a href="#{{ $i }}" data-toggle="modal">
+                                                    <div class="panel-footer">
+                                                        {{$review->product_name}}
                                                     </div>
-                                                    <div class="col-xs-9 text-right">
-                                                        <div class="huge">12</div>
-                                                        <div>New Tasks!</div>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- modal -->
+                                        <div class="modal about-modal fade" id="{{ $i }}" role="dialog">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header"> 
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>                        
+                                                            <h4 class="modal-title">{{$review->product_name}}</h4>
+                                                    </div> 
+                                                    <div class="modal-body">
+                                                        <div class="w3ls-about-info">
+                                                            <img class="img" src="./images/p.jpg"  style="height:150px;" alt="">
+                                                            <br>
+                                                            
+                                                            @if (Auth::guest())
+                                                            <i class="fa fa-thumbs-up"> {{$review->upvote}} </i>
+                                                            <i class="fa fa-thumbs-down"> {{$review->downvote}} </i>
+                                                            @else
+                                                            <a  href="{{route('upvote', $review->id)}}"><i class="fa fa-thumbs-up"> {{$review->upvote}} </i></a>
+                                                            <a  href="{{route('downvote', $review->id)}}"><i class="fa fa-thumbs-down"> {{$review->downvote}} </i></a>
+                                                            @endif
+
+                                                            <h4>Category</h4>
+                                                            <p>{{$review->category}}</p>
+                                                            <h4>Price</h4>
+                                                            <p>{{$review->price}}</p>
+                                                            <h4>Review</h4>
+                                                            <p>{{$review->review}}</p>
+                                                            
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a href="#">
-                                                <div class="panel-footer">
-                                                    <span class="pull-left">View Details</span>
-                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </a>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="panel panel-green">
-                                            <div class="panel-heading">
-                                                <div class="row">
-                                                    <div class="col-xs-3">
-                                                        <i class="fa fa-tasks fa-5x"></i>
-                                                    </div>
-                                                    <div class="col-xs-9 text-right">
-                                                        <div class="huge">12</div>
-                                                        <div>New Tasks!</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="#">
-                                                <div class="panel-footer">
-                                                    <span class="pull-left">View Details</span>
-                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="panel panel-green">
-                                            <div class="panel-heading">
-                                                <div class="row">
-                                                    <div class="col-xs-3">
-                                                        <i class="fa fa-tasks fa-5x"></i>
-                                                    </div>
-                                                    <div class="col-xs-9 text-right">
-                                                        <div class="huge">12</div>
-                                                        <div>New Tasks!</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="#">
-                                                <div class="panel-footer">
-                                                    <span class="pull-left">View Details</span>
-                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                        <!-- //modal -->
+                                        <?php $i++;?>
+                                @endforeach
+
+                        </div>
 
                             </div>
                         </div>

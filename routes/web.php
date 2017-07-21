@@ -33,3 +33,4 @@ Route::get('/clothing', array('uses' => 'NavController@clothing', 'as' => 'cloth
 Route::get('/shoes', array('uses' => 'NavController@shoes', 'as' => 'shoes'));
 Route::get('/others', array('uses' => 'NavController@others', 'as' => 'others'));
 Route::get('/getFilterPhone', 'NavController@getFilterPhone');
+Route::get('/getFilterCamera', 'NavController@getFilterCamera');
