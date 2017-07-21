@@ -30,7 +30,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $reviews = Review::all();
+        return view('home')->with('reviews', $reviews);
     }
 
     public function postAddReview()
@@ -58,19 +59,26 @@ class HomeController extends Controller
             $review->category = $input['category'];
             $review->price = $input['price'];
             $review->review = $input['review'];
+            $review->photo = $input['photo'];
 
-            return $photo=Input::file('photo');
-            
+            if($review->save())
+                return redirect()->back();
+            else
+                return redirect()->back();
+
+            /**
+             * ekhan theke kaj kore na
+             */
+            $photo = $input['photo'];
+
             if(!empty($photo))
             {
                 $destinationPath = './files';
-                $extension = $file->getClientOriginalExtension();
-
-                $filename =Auth::user()->name.rand(11111,99999).'.'.$extension;
                 
-                $upload_success = $photo->move($destinationPath, $filename);
+                $upload_success = $photo->move($destinationPath, $photo);
                 
-                $review->photo = $destinationPath.'/'.$filename;
+                $review->photo = $destinationPath.'/'.$photo;
+                return 30;
                 if($review->save()){
                     return redirect()->back();
                 }
@@ -80,9 +88,13 @@ class HomeController extends Controller
             else
                 return redirect()->back();
 
+            /**
+             * ei porjonto
+             */
+
         } else {
 
-                return redirect()->back()->withInput()->withErrors($v);
+            return redirect()->back()->withInput()->withErrors($v);
         }
     }
 }
