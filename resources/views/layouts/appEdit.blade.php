@@ -89,7 +89,28 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#category"> Category <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="category" class="collapse">
                             <li>
-                                <a href="{{ url('phone') }}">Smart Phone</a>
+                               <a href="javascript:;" data-toggle="collapse" data-target="#smart"> Smart phone <i class="fa fa-fw fa-caret-down"></i></a>
+
+                               <ul  id="smart" class="collapse">
+                                   
+
+                                    <li>
+                                        <a href="#"> Tk.100 - Tk.1000 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Tk.1000 - Tk.5000 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Tk.5000 - Tk.10000 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Tk.10000 - Tk.50000 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Tk.50000 + </a>
+                                    </li>
+
+                               </ul>
                             </li>
                             <li>
                                 <a href="{{ url('camera') }}">Camera</a>
@@ -108,6 +129,26 @@
                             </li>
                             <li>
                                 <a href="{{ url('others') }}">Others</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#price"> Price Range <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="price" class="collapse">
+                            <li>
+                                <a href="#"> Tk.100 - Tk.1000 </a>
+                            </li>
+                            <li>
+                                <a href="#"> Tk.1000 - Tk.5000 </a>
+                            </li>
+                            <li>
+                                <a href="#"> Tk.5000 - Tk.10000 </a>
+                            </li>
+                            <li>
+                                <a href="#"> Tk.10000 - Tk.50000 </a>
+                            </li>
+                            <li>
+                                <a href="#"> Tk.50000 + </a>
                             </li>
                         </ul>
                     </li>
